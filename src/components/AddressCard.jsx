@@ -1,11 +1,11 @@
 function AddressCard({address}){
 
     return(
-        <div key={address.id}>
+        <p key={address.id}>
             <div>Place: {address.place}</div>
             <div>Address: {address.address}</div>
             <div>State: {address.state}</div>
-        </div>
+        </p>
     )
 }
 

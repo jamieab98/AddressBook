@@ -4,7 +4,7 @@ function DisplayAddresses({addresses}){
     return(
         <>
             {addresses.map((address) => (
-                <AddressCard address={address}></AddressCard>
+                <AddressCard address={address} key={address.id}></AddressCard>
             ))}
         </>
     )
