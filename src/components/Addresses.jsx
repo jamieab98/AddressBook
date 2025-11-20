@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import AddressCard from "./AddressCard"
 import DisplayAddresses from "./DisplayAddresses"
+import NavBar from "./NavBar"
 
 function Addresses(){
     const addressapi = 'https://691f885431e684d7bfc9fffe.mockapi.io/addresses'
@@ -15,6 +16,8 @@ function Addresses(){
 
     return(
         <>
+            <NavBar/>
+            <h2>Addresses</h2>
             <DisplayAddresses addresses={addresses}/>
         </>
     )
