@@ -8,7 +8,6 @@ function AddressForm(){
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(location, address, state)
     }
 
     return(
@@ -17,11 +16,11 @@ function AddressForm(){
             <h2>Address From</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="location">Name of Place</label>
-                <input type="text" placeholder="Name..." value={location} id="lcoation" onChange={(e)=>(setLocation(e.target.value))}/>
+                <input type="text" placeholder="Name..." value={location} id="location" onChange={(e)=>(setLocation(e.target.value))}/>
                 <label htmlFor="address">Address</label>
-                <input type="text" placeholder="Address" value={address} id="address" onChange={(e)=>(setAddress(e.target.value))}></input>
+                <input type="text" placeholder="Address" value={address} id="address" autoComplete="address" onChange={(e)=>(setAddress(e.target.value))}/>
                 <label htmlFor="state">State</label>
-                <input type="text" placeholder="State" value={state} id="state" onChange={(e)=>(setState(e.target.value))}></input>
+                <input type="text" placeholder="State" value={state} id="state" onChange={(e)=>(setState(e.target.value))}/>
                 <button type="submit">Submit New Address</button>
             </form>
         </>
