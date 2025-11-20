@@ -1,16 +1,11 @@
-function AddressCard({addresses}){
+function AddressCard({address}){
 
     return(
-        <>
-            <div>Address Cards</div>
-            {addresses.map((address) => (
-                <div key={address.id}>
-                <div>Place: {address.place}</div>
-                <div>Address: {address.address}</div>
-                <div>State: {address.state}</div>
-                </div>
-            ))}
-        </>
+        <div key={address.id}>
+            <div>Place: {address.place}</div>
+            <div>Address: {address.address}</div>
+            <div>State: {address.state}</div>
+        </div>
     )
 }
 

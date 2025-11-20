@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import AddressCard from "./AddressCard"
+import DisplayAddresses from "./DisplayAddresses"
 
 function Addresses(){
     const addressapi = 'https://691f885431e684d7bfc9fffe.mockapi.io/addresses'
@@ -12,14 +13,9 @@ function Addresses(){
         .catch(error => console.log(error))
     }, [])
 
-    function handleClick(){
-        console.log(addresses)
-    }
-
     return(
         <>
-            <AddressCard addresses={addresses}/>
-            <button onClick={handleClick}>Click To Log Data</button>
+            <DisplayAddresses addresses={addresses}/>
         </>
     )
 }
