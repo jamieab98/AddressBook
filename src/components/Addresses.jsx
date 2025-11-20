@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import AddressCard from "./AddressCard"
 
 function Addresses(){
     const addressapi = 'https://691f885431e684d7bfc9fffe.mockapi.io/addresses'
@@ -17,7 +18,7 @@ function Addresses(){
 
     return(
         <>
-            <div>Addresses Component</div>
+            <AddressCard addresses={addresses}/>
             <button onClick={handleClick}>Click To Log Data</button>
         </>
     )
