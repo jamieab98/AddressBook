@@ -6,18 +6,21 @@ function AddressForm(){
     const [address, setAddress] = useState("")
     const [state, setState] = useState("")
     const statesList = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
-    
-    function stateVerification(){
-        if (statesList.includes(state.toUpperCase())){
-            console.log("Valid State")
-        } else {
-            console.log("Invalid State")
-        }
-    }
 
     function handleSubmit(e){
         e.preventDefault()
-        stateVerification()
+        if (location === ""){
+            console.log("location is empty")
+        }
+        else if (address === ""){
+            console.log("address is empty")
+        }
+        else if (!statesList.includes(state.toUpperCase())){
+            console.log("invalid state")
+        }
+        else {
+            console.log("Valid submission")
+        }
     }
 
     return(
