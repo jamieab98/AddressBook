@@ -41,7 +41,7 @@ function AddressForm(){
             .then(response => response.json())
             .then((data) => {
                 setAddresses((prev) => [...prev, data])
-                navigate("/")
+                navigate("/addresses")
             })
             .catch(error => console.log(error))
         }

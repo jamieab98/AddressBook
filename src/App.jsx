@@ -3,6 +3,7 @@ import Addresses from "./components/Addresses"
 import AddressForm from "./components/AddressForm"
 import { AddressesContext } from "./AddressesContext"
 import { useState } from "react"
+import LogIn from "./components/LogIn"
 
 function App() {
   const [addresses, setAddresses] = useState([])
@@ -10,7 +11,8 @@ function App() {
   return(
     <AddressesContext.Provider value ={{addresses, setAddresses}}>
     <Routes>
-      <Route path="/" element={<Addresses/>} />
+      <Route path="/" element={<LogIn/>} />
+      <Route path="/addresses" element={<Addresses/>} />
       <Route path="/addressform" element={<AddressForm/>} />
     </Routes>
     </AddressesContext.Provider>

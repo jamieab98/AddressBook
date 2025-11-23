@@ -4,9 +4,11 @@ function NavBar(){
 
     return(
         <nav>
-            <Link to = "/">Address</Link>
+            <Link to = "/addresses">Address</Link>
             <div/>
             <Link to = "/addressform">Address Form</Link>
+            <div/>
+            <Link to = "/">Log Out</Link>
         </nav>
     )
 }
