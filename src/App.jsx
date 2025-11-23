@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom"
-import NavBar from "./components/NavBar"
 import Addresses from "./components/Addresses"
 import AddressForm from "./components/AddressForm"
 import { AddressesContext } from "./AddressesContext"
