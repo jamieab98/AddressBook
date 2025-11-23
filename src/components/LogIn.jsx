@@ -10,6 +10,12 @@ function LogIn() {
     return(
         <>
             <p>Login Components</p>
+            <form>
+                <label>Username:</label>
+                <input type="text" placeholder="username"/>
+                <label>Password:</label>
+                <input type="text" placeholder="password"/>
+            </form>
             <button onClick={handleLogin}>Log In</button>
         </>
     )
