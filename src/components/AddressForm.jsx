@@ -1,8 +1,10 @@
 import NavBar from "./NavBar"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { v4 as uuidv4 } from "uuid"
+import { AddressesContext } from "../AddressesContext"
 
 function AddressForm(){
+    const {setAddresses} = useContext(AddressesContext)
     const [location, setLocation] = useState("")
     const [address, setAddress] = useState("")
     const [state, setState] = useState("")
@@ -11,6 +13,12 @@ function AddressForm(){
 
     function handleSubmit(e){
         e.preventDefault()
+        const newAddress = {
+        id: uuidv4(),
+        place: location,
+        address: address,
+        state: state.toUpperCase()
+    }
         if (location === ""){
             console.log("location is empty")
         }
@@ -26,16 +34,12 @@ function AddressForm(){
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    id: uuidv4(),
-                    place: location,
-                    address: address,
-                    state: state.toUpperCase()
-                }),
+                body: JSON.stringify(newAddress),
             })
             .then(response => response.json())
             .then((data) => {
                 console.log(data)
+                setAddresses((prev) => [...prev, data])
             })
             .catch(error => console.log(error))
         }
@@ -44,7 +48,7 @@ function AddressForm(){
     return(
         <>
             <NavBar/>
-            <h2>Address From</h2>
+            <h2>Address Form</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="location">Name of Place</label>
                 <input type="text" placeholder="Name..." value={location} id="location" onChange={(e)=>(setLocation(e.target.value))}/>

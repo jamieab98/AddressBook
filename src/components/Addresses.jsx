@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
-import AddressCard from "./AddressCard"
+import { useContext, useEffect } from "react"
 import DisplayAddresses from "./DisplayAddresses"
 import NavBar from "./NavBar"
+import { AddressesContext } from "../AddressesContext"
 
 function Addresses(){
+    const {addresses, setAddresses} = useContext(AddressesContext)
     const addressapi = 'https://691f885431e684d7bfc9fffe.mockapi.io/addresses'
-    const [addresses, setAddresses] = useState([])
 
     useEffect(() => {
         fetch(addressapi)
