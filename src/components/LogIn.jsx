@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 function LogIn() {
     const navigate = useNavigate();
@@ -37,7 +38,9 @@ function LogIn() {
                 <input type="text" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} id="password"/>
                 <button type="submit">Log In</button>
             </form>
+            <p>Create a new account</p>
             <p>{errorMessage}</p>
+            <Outlet />
         </>
     )
 }
