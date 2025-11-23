@@ -6,6 +6,7 @@ function LogIn() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [allLoginCreds, setAllLoginCreds] = useState([])
+    const [errorMessage, setErrorMessage] = useState("")
 
     useEffect(() => {
         fetch('https://691f885431e684d7bfc9fffe.mockapi.io/LoginCredientials')
@@ -16,12 +17,13 @@ function LogIn() {
     
     function handleLogin(e){
         e.preventDefault()
+        setErrorMessage("")
         const filteredCred = allLoginCreds.find((logincreds)=>(logincreds.username.includes(username)))
         if (filteredCred.username === username && filteredCred.password === password){
             navigate("/addresses")
         }
         else {
-            console.log("try again")
+            setErrorMessage("Incorrect Password or Username")
         }
     }
 
@@ -35,6 +37,7 @@ function LogIn() {
                 <input type="text" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} id="password"/>
                 <button type="submit">Log In</button>
             </form>
+            <p>{errorMessage}</p>
         </>
     )
 }
