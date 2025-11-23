@@ -2,6 +2,7 @@ import NavBar from "./NavBar"
 import { useContext, useState } from "react"
 import { v4 as uuidv4 } from "uuid"
 import { AddressesContext } from "../AddressesContext"
+import { useNavigate } from "react-router-dom"
 
 function AddressForm(){
     const {setAddresses} = useContext(AddressesContext)
@@ -10,6 +11,7 @@ function AddressForm(){
     const [state, setState] = useState("")
     const statesList = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
     const addressapi = 'https://691f885431e684d7bfc9fffe.mockapi.io/addresses'
+    const navigate = useNavigate()
 
     function handleSubmit(e){
         e.preventDefault()
@@ -38,8 +40,8 @@ function AddressForm(){
             })
             .then(response => response.json())
             .then((data) => {
-                console.log(data)
                 setAddresses((prev) => [...prev, data])
+                navigate("/")
             })
             .catch(error => console.log(error))
         }
