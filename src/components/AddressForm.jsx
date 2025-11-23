@@ -1,11 +1,13 @@
 import NavBar from "./NavBar"
 import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
 
 function AddressForm(){
     const [location, setLocation] = useState("")
     const [address, setAddress] = useState("")
     const [state, setState] = useState("")
     const statesList = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
+    const addressapi = 'https://691f885431e684d7bfc9fffe.mockapi.io/addresses'
 
     function handleSubmit(e){
         e.preventDefault()
@@ -19,7 +21,23 @@ function AddressForm(){
             console.log("invalid state")
         }
         else {
-            console.log("Valid submission")
+            fetch(addressapi, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: uuidv4(),
+                    place: location,
+                    address: address,
+                    state: state.toUpperCase()
+                }),
+            })
+            .then(response => response.json())
+            .then((data) => {
+                console.log(data)
+            })
+            .catch(error => console.log(error))
         }
     }
 
