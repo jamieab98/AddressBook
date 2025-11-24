@@ -9,7 +9,7 @@ function CreateUser(){
     const [newPasswordVerification, setNewPasswordVerification] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
     const [existingUsernames, setExisitngUsernames] = useState([])
-    const {usernames, setUsernames} = useContext(UsersContext)
+    const {usernames, setUsernames, setNumberOfUsers} = useContext(UsersContext)
 
     function newUserSubmit(e){
         fetch(LoginAPI)
@@ -37,7 +37,10 @@ function CreateUser(){
                 })
             })
             .then(response=>response.json())
-            .then(data=>console.log(data))
+            .then((data)=>{
+                setUsernames((prev)=>[...prev, data.username])
+                setNumberOfUsers(usernames.length + 1)
+            })
             .catch(error=>console.log(error))
             setNewUsername("")
             setNewPassword("")

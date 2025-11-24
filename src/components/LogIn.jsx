@@ -10,7 +10,7 @@ function LogIn() {
     const [allLoginCreds, setAllLoginCreds] = useState([])
     const [errorMessage, setErrorMessage] = useState("")
     const LoginAPI = 'https://691f885431e684d7bfc9fffe.mockapi.io/LoginCredientials'
-    const {usernames, setUsernames} = useContext(UsersContext)
+    const {usernames, setUsernames, numberOfUsers} = useContext(UsersContext)
 
     useEffect(() => {
         fetch(LoginAPI)
@@ -18,9 +18,10 @@ function LogIn() {
         .then((data)=>{
             setUsernames(data.map(d=>d.username))
             setAllLoginCreds(data)
+            console.log(usernames)
         })
         .catch(error=>console.log(error))
-    }, [])
+    }, [numberOfUsers])
     
     function handleLogin(e){
         e.preventDefault()

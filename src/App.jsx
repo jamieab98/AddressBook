@@ -10,10 +10,11 @@ import CreateUser from "./components/CreateUser"
 function App() {
   const [addresses, setAddresses] = useState([])
   const [usernames, setUsernames] = useState([])
+  const [numberofUsers, setNumberOfUsers] = useState(0)
 
   return(
     <AddressesContext.Provider value ={{addresses, setAddresses}}>
-    <UsersContext.Provider value={{usernames, setUsernames}}>
+    <UsersContext.Provider value={{usernames, setUsernames, numberofUsers, setNumberOfUsers}}>
     <Routes>
       <Route path="/" element={<LogIn/>}>
         <Route index element={<CreateUser />} />
