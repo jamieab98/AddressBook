@@ -8,24 +8,15 @@ function CreateUser(){
     const [newPasswordVerification, setNewPasswordVerification] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
     const [existingUsernames, setExisitngUsernames] = useState([])
-    const [newCreds, setNewCreds] = useState({})
 
-    useEffect(()=>{
+    function newUserSubmit(e){
         fetch(LoginAPI)
         .then(response=>response.json())
         .then((logins)=>{
             setExisitngUsernames(logins.map(login=>login.username))
         })
         .catch(error=>console.log(error))
-    }, [])
-
-    function newUserSubmit(e){
         e.preventDefault()
-        setNewCreds({
-            username : newUsername,
-            password : newPassword,
-            id : uuidv4()
-        })
         setErrorMessage("")
         if (existingUsernames.includes(newUsername)){
             setErrorMessage("This username already exists. Please select a new one")
@@ -37,7 +28,11 @@ function CreateUser(){
             fetch(LoginAPI, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(newCreds)
+                body: JSON.stringify({
+                    username: newUsername,
+                    password: newPassword,
+                    id: uuidv4()
+                })
             })
             .then(response=>response.json())
             .then(data=>console.log(data))

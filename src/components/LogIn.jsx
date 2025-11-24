@@ -8,9 +8,10 @@ function LogIn() {
     const [password, setPassword] = useState("")
     const [allLoginCreds, setAllLoginCreds] = useState([])
     const [errorMessage, setErrorMessage] = useState("")
+    const LoginAPI = 'https://691f885431e684d7bfc9fffe.mockapi.io/LoginCredientials'
 
     useEffect(() => {
-        fetch('https://691f885431e684d7bfc9fffe.mockapi.io/LoginCredientials')
+        fetch(LoginAPI)
         .then(response=>response.json())
         .then(data=>setAllLoginCreds(data))
         .catch(error=>console.log(error))
