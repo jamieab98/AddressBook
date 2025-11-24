@@ -18,14 +18,12 @@ function LogIn() {
         .then((data)=>{
             setUsernames(data.map(d=>d.username))
             setAllLoginCreds(data)
-            console.log(usernames)
         })
         .catch(error=>console.log(error))
     }, [numberOfUsers])
     
     function handleLogin(e){
         e.preventDefault()
-        console.log(usernames)
         setErrorMessage("")
         fetch(LoginAPI)
         .then(response=>response.json())
