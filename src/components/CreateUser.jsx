@@ -46,7 +46,6 @@ function CreateUser(){
             setNewPassword("")
             setNewPasswordVerification("")
         }
-        console.log(usernames)
     }
 
     return(
