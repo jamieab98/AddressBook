@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
+import { useState, useContext } from "react"
 import { v4 as uuidv4 } from "uuid"
+import { UsersContext } from "../UsersContext"
 
 function CreateUser(){
     const LoginAPI = 'https://691f885431e684d7bfc9fffe.mockapi.io/LoginCredientials'
@@ -8,6 +9,7 @@ function CreateUser(){
     const [newPasswordVerification, setNewPasswordVerification] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
     const [existingUsernames, setExisitngUsernames] = useState([])
+    const {usernames, setUsernames} = useContext(UsersContext)
 
     function newUserSubmit(e){
         fetch(LoginAPI)
@@ -37,6 +39,9 @@ function CreateUser(){
             .then(response=>response.json())
             .then(data=>console.log(data))
             .catch(error=>console.log(error))
+            setNewUsername("")
+            setNewPassword("")
+            setNewPasswordVerification("")
         }
     }
 
