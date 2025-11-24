@@ -30,18 +30,18 @@ function LogIn() {
         .then((data)=>{
             setAllLoginCreds(data)
             setUsernames(data.map(d=>d.username))
+            const filteredCred = data.find((logincreds)=>(logincreds.username.includes(username)))
+            if (!usernames.includes(username)){
+                setErrorMessage("Username does not exist")
+            }
+            else if (filteredCred.username === username && filteredCred.password === password){
+                navigate("/addresses")
+            }
+            else {
+                setErrorMessage("Incorrect Password or Username")
+            }
         })
         .catch(error=>setErrorMessage(error))
-        const filteredCred = allLoginCreds.find((logincreds)=>(logincreds.username.includes(username)))
-        if (!usernames.includes(username)){
-            setErrorMessage("Username does not exist")
-        }
-        else if (filteredCred.username === username && filteredCred.password === password){
-            navigate("/addresses")
-        }
-        else {
-            setErrorMessage("Incorrect Password or Username")
-        }
     }
 
     return(

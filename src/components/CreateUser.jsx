@@ -11,14 +11,14 @@ function CreateUser(){
     const [existingUsernames, setExisitngUsernames] = useState([])
     const {usernames, setUsernames, setNumberOfUsers} = useContext(UsersContext)
 
-    function newUserSubmit(e){
+    async function newUserSubmit(e){
+        e.preventDefault()
         fetch(LoginAPI)
         .then(response=>response.json())
         .then((logins)=>{
             setExisitngUsernames(logins.map(login=>login.username))
         })
         .catch(error=>console.log(error))
-        e.preventDefault()
         setErrorMessage("")
         if (existingUsernames.includes(newUsername)){
             setErrorMessage("This username already exists. Please select a new one")
@@ -46,6 +46,7 @@ function CreateUser(){
             setNewPassword("")
             setNewPasswordVerification("")
         }
+        console.log(usernames)
     }
 
     return(
